@@ -1,14 +1,14 @@
 import React from "react"
 import Title from "../Title"
 import styles from "../../css/about.module.css"
-import { graphql, useStaticQuery } from "gatsby"
+// import img from "../../images/defaultBcg.jpeg"
+import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
-
 const getAbout = graphql`
-  query {
+  query aboutImage {
     aboutImage: file(relativePath: { eq: "defaultBcg.jpeg" }) {
       childImageSharp {
-        fluid {
+        fluid(maxWidth: 600) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }
@@ -17,17 +17,17 @@ const getAbout = graphql`
 `
 
 const About = () => {
-  const data = useStaticQuery(getAbout)
-  console.log(data.aboutImage.childImageSharp.fluid)
+  const { aboutImage } = useStaticQuery(getAbout)
+
   return (
     <section className={styles.about}>
-      <Title title="About" subtitle="us" />
+      <Title title="about" subtitle="us" />
       <div className={styles.aboutCenter}>
         <article className={styles.aboutImg}>
           <div className={styles.imgContainer}>
-            {/* <img src={img} alt="About Company" /> */}
+            {/* <img src={img} alt="about company" /> */}
             <Img
-              fluid={data.aboutImage.childImageSharp.fluid}
+              fluid={aboutImage.childImageSharp.fluid}
               alt="awesome landscape"
             />
           </div>
@@ -35,17 +35,15 @@ const About = () => {
         <article className={styles.aboutInfo}>
           <h4>explore the difference</h4>
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt
-            autem quos voluptas exercitationem doloribus, neque atque illo quas
-            commodi provident maxime! Vero eaque illo expedita itaque odit
-            ipsum. Ipsum, quod.
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla
+            doloribus enim necessitatibus?
           </p>
           <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt
-            autem
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla
+            doloribus enim necessitatibus?
           </p>
           <button type="button" className="btn-primary">
-            Read More
+            read more
           </button>
         </article>
       </div>
