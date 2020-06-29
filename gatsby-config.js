@@ -15,8 +15,13 @@ module.exports = {
     description:
       "Explore awesome worldwide tours and discover what makes each of them unique. Forget your daily routine & say yes to adventure",
     author: "@Kushal",
+    twitterUsername: "@fake_name",
+    image: "/static/defaultBcg.jpeg",
+    siteUrl: "https://project-backroads-g.netlify.app",
   },
   plugins: [
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -29,6 +34,14 @@ module.exports = {
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://project-backroads-g.netlify.app",
+        sitemap: "https://project-backroads-g.netlify.app/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
       },
     },
     `gatsby-transformer-sharp`,

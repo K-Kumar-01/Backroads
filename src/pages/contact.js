@@ -3,10 +3,12 @@ import Layout from "../components/Layout"
 import StyledHero from "../components/StyledHero"
 import { graphql } from "gatsby"
 import ContactForm from "../components/Contact/Contact"
+import SEO from "../components/SEO"
 
 const Contact = ({ data }) => {
   return (
     <Layout>
+      <SEO title="Contact" />
       <StyledHero img={data.connectBcg.childImageSharp.fluid} />
       <ContactForm />
     </Layout>
